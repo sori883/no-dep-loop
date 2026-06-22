@@ -1,4 +1,4 @@
-# ai-dlc — コーディングエージェントのループ定義
+# no-dep-loop — コーディングエージェントのループ定義
 
 再利用可能な **agent 定義**と **skill**として、コーディングエージェントのループ（triage / explorer / implementer / phase-reviewer / verifier を controller が協調させる）を提供するリポジトリです。永続メモリと作業状態は**ローカルファイル（`.docs/memory`）**で完結し、外部サービス（MCP 等）には依存しません。
 
