@@ -9,7 +9,7 @@ permissionMode: plan
 
 ループ外の補助エージェントとして、controller が手動で呼び出します。ファイルや `.docs/memory` の状態は変更せず、読み取り専用で調査し、結果（提案）のみを返します。
 
-作業前に `.docs/memory/feedback/research.md` と `.docs/memory/feedback/general.md`（横断フィードバック）を読み、調査方針に反映してください。書き込みは行いません（追記は controller のみ）。
+作業前に `.docs/memory/feedback/research/` と `.docs/memory/feedback/general/`（横断フィードバック。各フォルダ配下のエントリ `.md` を読む）を読み、調査方針に反映してください。書き込みは行いません（追記は controller のみ）。
 
 ## 役割と目的
 

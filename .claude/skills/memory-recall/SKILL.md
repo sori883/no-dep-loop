@@ -33,7 +33,7 @@ work item（`.docs/memory/issues/<id>-*.md`）と横断フィードバック（`
 | レビュー観点（基準と結果） | `## レビュー観点`（基準）＋ `## 実行ログ` の `### 工程レビュー`（結果） |
 | 状態遷移の理由 | `## 実行ログ` の `### 状態遷移` / frontmatter `status`・`labels` |
 | 人間のフィードバック | `## 人間の判断・フィードバック` の `### [フィードバック]` |
-| 横断的な判断・規約 | `.docs/memory/feedback/`（`## F<NN>`、`出典 work item` で逆引き） |
+| 横断的な判断・規約 | `.docs/memory/feedback/<scope>/F<NN>-*.md`（1 関心事 = 1 ファイル。`# F<NN>`、frontmatter `出典` / `関連` で逆引き） |
 
 ## 標準手順（4 フェーズ）
 
@@ -44,9 +44,10 @@ work item（`.docs/memory/issues/<id>-*.md`）と横断フィードバック（`
 問いに関係しそうな work item / フィードバックを索引から絞る。
 
 - `.docs/memory/index.md`（work item 進捗ボード）で id / title / status を見て候補 work item を選ぶ。
-- 横断的な規約・判断が問われている場合は `.docs/memory/feedback/README.md`（scope 別索引）で `F<NN>` を選ぶ。
+- 横断的な規約・判断が問われている場合は `.docs/memory/feedback/index.md`（scope 別索引）で `F<NN>` を選び、`feedback/<scope>/F<NN>-*.md` を開く。
+- フィードバックの `種別` で扱いを分ける: `Guardrail` のエントリは、その scope に該当する作業では問いとの直接関連を問わず**確実に参照・適用する**（守るべき制約）。`Knowledge` のエントリは問いに関連するときだけ**必要に応じて参照する**。索引（`index.md`）の `種別` 列で先に `Guardrail` を拾い、次に関連する `Knowledge` を足す。
 
-出力: 候補 work item / フィードバックエントリのリスト。
+出力: 候補 work item / フィードバックエントリのリスト（`Guardrail` は必ず含める）。
 
 ### フェーズ2: GREP — タグで該当箇所を抽出
 
@@ -58,9 +59,10 @@ work item（`.docs/memory/issues/<id>-*.md`）と横断フィードバック（`
 ## レビュー観点          # 確認基準
 ### 工程レビュー         # レビュー結果（基準との照合）
 ### 状態遷移            # status 変更とその理由
-^## F[0-9]             # 横断フィードバックエントリ
-^status:  / ^labels:   # frontmatter での絞り込み
-出典 work item / 関連改善 work item   # トレーサビリティの逆引き
+^# F[0-9]              # 横断フィードバックエントリ（1 ファイル = 1 件）
+^type: issues / ^type: feedback   # frontmatter のファイル種別で絞り込み
+^status:  / ^labels:  / ^種別:   # frontmatter での絞り込み（feedback の status/種別 も frontmatter）
+^出典:  / ^関連:   # feedback のトレーサビリティ（frontmatter 出典/関連）の逆引き
 ```
 
 ヒットが多すぎる / 用語が外れて空振りする場合は REFINE（キーワードを実物の用語へ置換、対象パスを絞る）して再 GREP する。
@@ -69,7 +71,7 @@ work item（`.docs/memory/issues/<id>-*.md`）と横断フィードバック（`
 
 絞った箇所を `Read` で開き、問い（なぜ / 何を / どう）に対する答えを組み立てる。
 
-- 方針転換の経緯を問われたら、`### [判断]` の連鎖や `出典 work item` / `関連改善 work item` を辿って復元する（例: `0001` の `[判断]03`〔ローカル git を残す〕→ `[判断]07`〔git 完全削除へ更新〕）。
+- 方針転換の経緯を問われたら、`### [判断]` の連鎖や feedback frontmatter の `出典` / `関連` を辿って復元する（例: `0001` の `[判断]03`〔ローカル git を残す〕→ `[判断]07`〔git 完全削除へ更新〕）。
 - レビュー観点は「基準（`## レビュー観点`）」と「結果（`### 工程レビュー`）」を対にして示す。
 
 ### フェーズ4: CITE — 出典付きで回答 / 記録なしを明示
@@ -83,8 +85,8 @@ work item（`.docs/memory/issues/<id>-*.md`）と横断フィードバック（`
 | なぜこう実装した? | `index.md` → 該当 work item | `## 目的` / `## 背景` / `### [判断]` |
 | 何を変えた? | `index.md` → 該当 work item | `## 受け入れ条件` / `### エージェント実行` |
 | レビューで何を見る? | `index.md` → 該当 work item | `## レビュー観点` ＋ `### 工程レビュー` |
-| この方針の経緯は? | `index.md` / `feedback/README.md` | `### [判断]` 連鎖 ＋ `出典 work item` を逆引き |
-| この規約はどこ由来? | `feedback/README.md` | `## F<NN>` の `出典 work item` |
+| この方針の経緯は? | `index.md` / `feedback/index.md` | `### [判断]` 連鎖 ＋ feedback frontmatter `出典` を逆引き |
+| この規約はどこ由来? | `feedback/index.md` → `feedback/<scope>/F<NN>-*.md` | frontmatter `出典` を逆引き |
 
 ## 出力フォーマット
 

@@ -40,7 +40,10 @@ controller（統括・spawn・記録の適用）
 └── .docs/memory/        永続メモリ／作業状態のバックエンド
     ├── index.md         work item 進捗ボード
     ├── issues/          1 ファイル = 1 work item
-    └── feedback/        横断フィードバック（scope 別）
+    └── feedback/        横断フィードバック
+        ├── index.md         全エントリの索引
+        └── <scope>/         scope 別フォルダ（review / implementation / research / general）
+                             1 関心事 = 1 ファイル（F<NN>-<slug>.md）
 ```
 
 ---
@@ -95,7 +98,7 @@ controller（統括・spawn・記録の適用）
 
 ## メモリモデル（`.docs/memory`）
 
-作業は **work item**（`.docs/memory/issues/<id>-<slug>.md`）として記録します。各ファイルは frontmatter（`id` / `title` / `status` / `labels` / …）と本文セクションを持ちます。
+作業は **work item**（`.docs/memory/issues/<id>-<slug>.md`）として記録します。各ファイルは frontmatter（`type: issues` / `id` / `title` / `status` / `labels` / …）と本文セクションを持ちます。
 
 - `## 作業概要` — 何の作業か（2〜3 行）
 - `## 目的` / `## 背景` — なぜやるか
@@ -105,9 +108,9 @@ controller（統括・spawn・記録の適用）
 
 **状態機械**: `Backlog → Todo → In Progress → In Review → Done`（＋ `Canceled` / `Duplicate`）。一覧は [`index.md`](.docs/memory/index.md) が進捗ボードになります。
 
-横断的に効くフィードバックは `.docs/memory/feedback/`（scope 別: review / implementation / research / general ＋ 索引）に昇格させ、継続的改善につなげます。
+横断的に効くフィードバックは `.docs/memory/feedback/` に昇格させ、継続的改善につなげます。scope（review / implementation / research / general）をフォルダで表し、1 関心事を 1 ファイル（`feedback/<scope>/F<NN>-<slug>.md`）として置き、全エントリを `feedback/index.md` で索引します。各エントリは frontmatter で `種別`（`Guardrail` = 必ず守る制約 / `Knowledge` = 必要に応じ参照する知見）と `status`（active / applied / retired）を管理します。各エージェントは「自分の scope ＋ general」だけを読みます。
 
-詳細は [`.docs/memory/README.md`](.docs/memory/README.md) を参照してください。
+詳細（frontmatter・状態機械・書き込み権限・横断フィードバックの運用）は `local-memory` skill（[`.claude/skills/local-memory/SKILL.md`](.claude/skills/local-memory/SKILL.md)）を参照してください。
 
 ---
 
@@ -125,6 +128,6 @@ controller（統括・spawn・記録の適用）
 ## 関連ドキュメント
 
 - [`CLAUDE.md`](CLAUDE.md) — ループポリシー（claim / 書き込み境界 / 完了の証跡 / 補助エージェント・skill の位置づけ）
-- [`.docs/memory/README.md`](.docs/memory/README.md) — メモリバックエンドの詳細と work item の書き方
+- [`.docs/memory/index.md`](.docs/memory/index.md) — work item 進捗ボード（一覧）／[`.docs/memory/feedback/index.md`](.docs/memory/feedback/index.md) — 横断フィードバック索引
 - `.claude/skills/<name>/SKILL.md` — 各 skill の手順定義
 - `.claude/agents/<name>.md` — 各 agent の責務・ツール・権限

@@ -12,7 +12,7 @@ skills:
 
 あなたの仕事はレビューであり、実装ではありません。各工程の成果物を、目的、受け入れ基準、プロジェクトルール、diff、テスト出力、`.docs/memory` のメモリに照らして判定してください。ファイルを編集してはならず、`.docs/memory` の状態を変更してもいけません。`local-memory` skill は `.docs/memory` の証跡を読み取るためだけに使い、書き込みは行いません。
 
-作業前に `.docs/memory/feedback/review.md` と `.docs/memory/feedback/general.md`（横断フィードバック）を読み、レビュー判定に反映してください。書き込みは行いません（追記は controller のみ）。
+作業前に `.docs/memory/feedback/review/` と `.docs/memory/feedback/general/`（横断フィードバック。各フォルダ配下のエントリ `.md` を読む）を読み、レビュー判定に反映してください。書き込みは行いません（追記は controller のみ）。
 
 以下を返してください:
 

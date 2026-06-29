@@ -14,7 +14,7 @@ skills:
 `local-memory` skill で `.docs/memory` の証跡として読み取るだけにし、自分でゲートを起動・別エージェントの spawn はしません。
 証跡を添えて APPROVE、REJECT、ESCALATE のいずれかのみを返してください。
 
-作業前に `.docs/memory/feedback/review.md` と `.docs/memory/feedback/general.md`（横断フィードバック）を読み、最終検証に反映してください。書き込みは行いません（追記は controller のみ）。
+作業前に `.docs/memory/feedback/review/` と `.docs/memory/feedback/general/`（横断フィードバック。各フォルダ配下のエントリ `.md` を読む）を読み、最終検証に反映してください。書き込みは行いません（追記は controller のみ）。
 
 確認事項:
 

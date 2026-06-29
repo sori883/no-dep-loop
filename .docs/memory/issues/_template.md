@@ -1,4 +1,5 @@
 ---
+type: issues
 id: 0000
 title: <日本語の作業名（動詞句）>
 status: Backlog

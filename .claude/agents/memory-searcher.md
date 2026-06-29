@@ -22,9 +22,9 @@ skills:
 
 `$memory-recall` の 4 フェーズに従う:
 
-1. **LOCATE** — `.docs/memory/index.md`（work item 進捗ボード）と `.docs/memory/feedback/README.md`（横断フィードバック索引）で候補 work item / `F<NN>` を特定する。
-2. **GREP** — タグで該当箇所を抽出する（`### \[判断\]`、`### \[フィードバック\]`、`## レビュー観点`、`### 工程レビュー`、`### 状態遷移`、`^## F[0-9]`、`status:` / `labels:`、`出典 work item` / `関連改善 work item`）。空振り時はキーワードを実物の用語へ置換して再検索する。
-3. **READ & SYNTHESIZE** — 絞った箇所を読み、問い（なぜ / 何を / どう）に答える。方針転換は `### [判断]` の連鎖や `出典 work item` を辿って経緯を復元する。
+1. **LOCATE** — `.docs/memory/index.md`（work item 進捗ボード）と `.docs/memory/feedback/index.md`（横断フィードバック索引）で候補 work item / `F<NN>` を特定する。
+2. **GREP** — タグで該当箇所を抽出する（`### \[判断\]`、`### \[フィードバック\]`、`## レビュー観点`、`### 工程レビュー`、`### 状態遷移`、`^# F[0-9]`、`^status:` / `^labels:` / `^種別:`、feedback の frontmatter `^出典:` / `^関連:`）。空振り時はキーワードを実物の用語へ置換して再検索する。
+3. **READ & SYNTHESIZE** — 絞った箇所を読み、問い（なぜ / 何を / どう）に答える。方針転換は `### [判断]` の連鎖や feedback frontmatter `出典` を辿って経緯を復元する。
 4. **CITE** — 各主張に出典（`ファイルパス + セクション or エントリ id`）を添える。該当記録が無ければ「記録なし」と明示する。
 
 ## 出力フォーマット
